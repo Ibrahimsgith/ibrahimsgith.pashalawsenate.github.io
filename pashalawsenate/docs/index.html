@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pasha Law Senate</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Navigation Bar -->
     <div class="navbar">
-        <a href="{{ url_for('home') }}">Home</a>
-        <a href="{{ url_for('about') }}">About</a>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
         <button id="theme-toggle">Toggle Theme</button>
     </div>
 
@@ -19,7 +19,7 @@
         <div class="hero-content">
             <h1>Pasha Law Senate</h1>
             <p>Your trusted partner in legal excellence.</p>
-            <a href="{{ url_for('contact') }}" class="cta-button">Get in Touch</a>
+            <a href="contact.html" class="cta-button">Get in Touch</a>
         </div>
     </div>
 
@@ -28,29 +28,20 @@
         <h1>Pasha Law Senate</h1>
         <p>Expert legal services tailored to your needs.</p>
         <div class="date-time">
-            <strong>Date:</strong> {{ datetime.now().strftime("%d-%m-%Y %H:%M") }}
+            <strong>Date:</strong> 26-02-2025 14:30
         </div>
-        <form method="POST" action="{{ url_for('contact') }}">
+        <form method="POST" action="https://formspree.io/f/your-form-id" target="_blank"> <!-- Replace with your Formspree ID or another form service -->
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
             <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
             <button type="submit">Submit</button>
         </form>
-
-        <!-- Flash Messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <p class="message {{ category }}">{{ message }}</p>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
     </div>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <p>© {{ datetime.now().year }} Pasha Law Senate. All rights reserved.</p>
+            <p>© 2025 Pasha Law Senate. All rights reserved.</p>
             <div class="social-links">
                 <a href="#">Facebook</a>
                 <a href="#">Twitter</a>
