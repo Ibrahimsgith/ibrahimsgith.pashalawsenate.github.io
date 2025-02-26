@@ -42,7 +42,7 @@ body.light-theme .navbar a:hover {
 
 /* Hero Section */
 .hero {
-  background: url("/docs/assets/css/background.jpg") no-repeat center center; /* Updated to use Flask static folder */
+  background: url("/static/background.jpg") no-repeat center center; /* Updated to use Flask static folder */
   background-size: cover;
   min-height: 100vh; /* Full viewport height for desktop */
   position: relative;
