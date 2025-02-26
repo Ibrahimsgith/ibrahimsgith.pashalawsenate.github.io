@@ -1,72 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pasha Law Senate</title>
-  <link rel="stylesheet" href="/docs/assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasha Law Senate</title>
+    <link rel="stylesheet" href="{{ url_for('static', background.jpg='style.css') }}">
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <div class="navbar">
-    <a href="{{ url_for('home') }}">Home</a>
-    <a href="{{ url_for('about') }}">About</a>
-    <button id="theme-toggle">Toggle Theme</button>
-  </div>
-
-  <!-- Hero Section with Background Image -->
-  <div class="hero">
-    <div class="hero-content">
-      <h1>Pasha Law Senate</h1>
-      <p>Your trusted partner in legal excellence.</p>
-      <a href="#contact" class="cta-button">Get in Touch</a>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <button id="theme-toggle">Toggle Theme</button>
     </div>
-  </div>
 
-  <!-- Main Content Container -->
-  <div class="container" id="contact">
-    <h1>Pasha Law Senate</h1>
-    <p>Expert legal services tailored to your needs.</p>
-    <div class="date-time">
-      <strong>Date:</strong> {{ datetime.now().strftime("%d-%m-%Y %H:%M") }}
+    <!-- Hero Section with Background Image -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Pasha Law Senate</h1>
+            <p>Your trusted partner in legal excellence.</p>
+            <a href="{{ url_for('contact') }}" class="cta-button">Get in Touch</a>
+        </div>
     </div>
-    <form method="POST" action="{{ url_for('contact') }}">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit">Submit</button>
-    </form>
 
-    <!-- Flash Messages -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <p class="message {{ category }}">{{ message }}</p>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-  </div>
+    <!-- Main Content Container -->
+    <div class="container" id="contact">
+        <h1>Pasha Law Senate</h1>
+        <p>Expert legal services tailored to your needs.</p>
+        <div class="date-time">
+            <strong>Date:</strong> {{ datetime.now().strftime("%d-%m-%Y %H:%M") }}
+        </div>
+        <form method="POST" action="{{ url_for('contact') }}">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
 
-  <!-- Additional Content (Services, Testimonials, etc.) can go here -->
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <p>&copy; 2023 Pasha Law Senate. All rights reserved.</p>
-      <div class="social-links">
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-        <a href="#">LinkedIn</a>
-      </div>
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="message {{ category }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
     </div>
-  </footer>
 
-  <script>
-    // Theme Toggle Script
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('light-theme');
-    });
-  </script>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>© {{ datetime.now().year }} Pasha Law Senate. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle Script
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+        });
+    </script>
 </body>
 </html>
