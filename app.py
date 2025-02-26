@@ -6,6 +6,9 @@ from datetime import datetime
 
 # Correct initialization of Flask app
 app = Flask(__name__) 
+@app.context_processor
+def inject_datetime():
+    return {'datetime': datetime}
 app.secret_key = 'e7a4387f0156601592bee3eac6cdaf2c'  # Required for flashing messages
 
 # Email configuration
@@ -51,6 +54,7 @@ def about():
 
 @app.route('/contact', methods=['POST'])
 def contact():
+    if request.method == 'POST':    
     name = request.form.get('name')
     email = request.form.get('email')
     message = request.form.get('message')
