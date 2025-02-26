@@ -5,6 +5,7 @@ body {
   padding: 0;
   background-color: #f4f4f4;
   color: #333;
+  transition: background-color 0.3s, color 0.3s; /* Smooth theme transition */
 }
 
 /* Navigation Bar */
@@ -25,11 +26,25 @@ body {
   color: #ffa500;
 }
 
+/* Light Theme Overrides for Navbar */
+body.light-theme .navbar {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+body.light-theme .navbar a {
+  color: #333;
+}
+
+body.light-theme .navbar a:hover {
+  color: #ff7300;
+}
+
 /* Hero Section */
 .hero {
-  background: url("/docs/assets/css/background.jpg") no-repeat center center;
+  background: url("/docs/assets/css/background.jpg") no-repeat center center; /* Updated to use Flask static folder */
   background-size: cover;
-  min-height: 100vh;  /* Makes the hero span the full viewport height */
+  min-height: 100vh; /* Full viewport height for desktop */
   position: relative;
   display: flex;
   align-items: center;
@@ -54,6 +69,11 @@ body {
 .hero-content {
   position: relative;
   z-index: 1;
+}
+
+/* Light Theme Overrides for Hero */
+body.light-theme .hero {
+  color: #333;
 }
 
 /* Container for Contact Form and Content */
@@ -102,11 +122,18 @@ body {
   background-color: #ff7300;
 }
 
+/* Light Theme Overrides for Container */
+body.light-theme .container {
+  background: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
 /* Flash Messages */
 .message {
   padding: 10px;
   margin: 10px 0;
   border-radius: 5px;
+  text-align: center;
 }
 
 .message.success {
@@ -117,6 +144,17 @@ body {
 .message.error {
   background-color: #f8d7da;
   color: #721c24;
+}
+
+/* Light Theme Overrides for Flash Messages */
+body.light-theme .message.success {
+  background-color: #c3e6cb;
+  color: #0f5132;
+}
+
+body.light-theme .message.error {
+  background-color: #f1aeb5;
+  color: #842029;
 }
 
 /* Services Section */
@@ -156,6 +194,16 @@ body {
   color: #666;
 }
 
+/* Light Theme Overrides for Services */
+body.light-theme .services {
+  background: #ffffff;
+}
+
+body.light-theme .service-card {
+  background: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
 /* Testimonials Section */
 .testimonials {
   text-align: center;
@@ -183,6 +231,16 @@ body {
   color: #333;
 }
 
+/* Light Theme Overrides for Testimonials */
+body.light-theme .testimonials {
+  background: #ffffff;
+}
+
+body.light-theme .testimonial-card {
+  background: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
 /* Footer */
 footer {
   text-align: center;
@@ -202,8 +260,64 @@ footer .social-links a:hover {
   color: #ffa500;
 }
 
-/* Light Theme Overrides */
-body.light-theme {
-  background-color: #fff;
+/* Light Theme Overrides for Footer */
+body.light-theme footer {
+  background: #f4f4f4;
   color: #333;
+}
+
+body.light-theme footer .social-links a {
+  color: #333;
+}
+
+body.light-theme footer .social-links a:hover {
+  color: #ff7300;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar a {
+    margin: 0 10px;
+    font-size: 16px;
+  }
+
+  .hero {
+    min-height: 50vh; /* Reduced height for mobile */
+  }
+
+  .container {
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  .container h1 {
+    font-size: 24px;
+  }
+
+  .container p {
+    font-size: 16px;
+  }
+
+  .service-card, .testimonial-card {
+    width: 100%; /* Full width on mobile for cards */
+  }
+
+  footer {
+    padding: 15px;
+  }
+}
+
+/* Ensure buttons and inputs are touch-friendly on mobile */
+@media (max-width: 480px) {
+  .container button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .container input,
+  .container textarea {
+    font-size: 14px;
+  }
 }
