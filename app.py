@@ -6,9 +6,6 @@ from datetime import datetime
 
 # Correct initialization of Flask app
 app = Flask(__name__) 
-@app.context_processor
-def inject_datetime():
-    return {'datetime': datetime}
 app.secret_key = 'e7a4387f0156601592bee3eac6cdaf2c'  # Required for flashing messages
 
 # Email configuration
@@ -46,26 +43,35 @@ def send_email(name, email, message):
 @app.route('/')
 def home():
     # Pass the datetime module to the template
-    return render_template('index.html', datetime=datetime)
+    return render_template('index.html')
 
 @app.route('/about')
 def about():
     return render_template('about.html')
 
-@app.route('/contact', methods=['POST'])
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    if request.method == 'POST':    
-    name = request.form.get('name')
-    email = request.form.get('email')
-    message = request.form.get('message')
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+        if send_email(name, email, message):
+            flash('Thank you! Your inquiry has been received.', 'success')
+        else:
+            flash('Failed to send your inquiry. Please try again.', 'error')
+        return redirect(url_for('home'))
+    return render_template('contact.html')  # Render the form for GET requests
 
-    if send_email(name, email, message):
-        flash('Thank you! Your inquiry has been received.', 'success')
-    else:
-        flash('Failed to send your inquiry. Please try again.', 'error')
+def send_email(name, email, message):
+    try:
+        # ... (email setup code) ...
+        print(f"Email sent successfully to {msg['To']}")
+        return True
+    except Exception as e:
+        print(f"Error sending email: {e}")
+        return False
 
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    app.run(debug= True)
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
