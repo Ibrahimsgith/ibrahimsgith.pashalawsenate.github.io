@@ -4,7 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pasha Law Senate</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="style.css"> 
+  <style>
+    /* Example CSS for flash message visibility */
+    #flash-message {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      transition: opacity 0.5s ease;
+    }
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -37,17 +54,9 @@
       <button type="submit">Submit</button>
     </form>
 
-    <!-- Flash Messages -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <p class="message {{ category }}">{{ message }}</p>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
+    <!-- Flash Message Container -->
+    <div id="flash-message" class="hidden"></div>
   </div>
-
-  <!-- Additional Content (Services, Testimonials, etc.) can go here -->
 
   <!-- Footer -->
   <footer>
@@ -67,6 +76,16 @@
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('light-theme');
     });
+
+    // Flash Message Script
+    function showFlashMessage(message) {
+      const flashMessageEl = document.getElementById('flash-message');
+      flashMessageEl.textContent = message;
+      flashMessageEl.classList.remove('hidden');
+      setTimeout(() => {
+        flashMessageEl.classList.add('hidden');
+      }, 3000); // Hide after 3 seconds
+    }
   </script>
 </body>
 </html>
