@@ -86,14 +86,6 @@
         flashMessageEl.classList.add('hidden');
       }, 3000); // Hide after 3 seconds
     }
-
-    // Example usage: Show flash message from Flask flash messages
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        // For demonstration, we show only the first flash message.
-        showFlashMessage("{{ messages[0][1] }}");
-      {% endif %}
-    {% endwith %}
   </script>
 </body>
 </html>
