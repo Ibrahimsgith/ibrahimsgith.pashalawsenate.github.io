@@ -66,6 +66,7 @@ def about():
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    logger.debug(f"Request method: {request.method}")
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
