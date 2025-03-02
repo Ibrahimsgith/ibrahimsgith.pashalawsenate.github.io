@@ -50,14 +50,16 @@
       <strong>Date:</strong> <span id="date-time"></span>
     </div>
 
-    <form method="POST" action="contact.html">
+    <!-- Contact Form Updated for Formspree -->
+    <form action="https://formspree.io/f/movjgnag" method="POST">
       <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
+      <!-- Using _replyto ensures Formspree knows which email to reply to -->
+      <input type="email" name="_replyto" placeholder="Your Email" required>
       <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
       <button type="submit">Submit</button>
     </form>
 
-    <!-- Flash Message Container (you can trigger this via JavaScript) -->
+    <!-- Flash Message Container -->
     <div id="flash-message" class="hidden"></div>
   </div>
 
@@ -99,7 +101,7 @@
       flashMessageEl.classList.remove('hidden');
       setTimeout(() => {
         flashMessageEl.classList.add('hidden');
-      }, 3000); // Hide after 3 seconds
+      }, 3000);
     }
   </script>
 </body>
